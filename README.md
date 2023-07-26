@@ -1,6 +1,14 @@
 ## Project | [![Playwright Tests](https://github.com/renhyl/todo-mvc/actions/workflows/playwright.yml/badge.svg)](https://github.com/renhyl/todo-mvc/actions/workflows/playwright.yml)
 
-Welcome to `todo-mvc` an example [TodoMVC](https://github.com/tastejs/todomvc) built with
+Welcome to `todo-mvc` an example [TodoMVC](https://github.com/tastejs/todomvc) 
+
+
+
+https://github.com/renhyl/todo-mvc/assets/2118334/42a92bfc-7dd8-418a-91b9-02f45d15e62e
+
+
+
+built with
 
 [API] powered by:
 
