@@ -1,4 +1,4 @@
-## Project
+## Project | [![Playwright Tests](https://github.com/renhyl/todo-mvc/actions/workflows/playwright.yml/badge.svg)](https://github.com/renhyl/todo-mvc/actions/workflows/playwright.yml)
 
 Welcome to `todo-mvc` an example [TodoMVC](https://github.com/tastejs/todomvc) built with
 
