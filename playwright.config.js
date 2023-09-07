@@ -71,13 +71,13 @@ export default defineConfig({
     /* Run your local dev server before starting the tests */
     webServer: [
         {
-            command: 'pnpm api',
+            command: 'bun run api',
             url: 'http://localhost:4000/graphql',
             // timeout: 5 * 1000,
             reuseExistingServer: false
         },
         {
-            command: 'pnpm web',
+            command: 'bun run web',
             url: 'http://localhost:5173/all',
             reuseExistingServer: true
             // timeout: 10 * 1000,
