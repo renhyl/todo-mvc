@@ -59,8 +59,8 @@ git clone git@github.com:renhyl/todo-mvc.git
 cd todo-mvc
 
 # install dependencies
-pnpm i
+bun install
 
 # run the example
-pnpm run dev
+bun run dev
 ```
