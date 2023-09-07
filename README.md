@@ -12,7 +12,7 @@ built with
 
 [API] powered by:
 
-[NodeJS](https://nodejs.org/)
+[Bun](https://bun.sh/)
 
 [GraphQLYoga](https://the-guild.dev/graphql/yoga-server/)
 
