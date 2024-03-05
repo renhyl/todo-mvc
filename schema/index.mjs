@@ -131,7 +131,8 @@ function orderByComparator(targetItems, orderBy) {
 
 export const resolvers = {
     Query: {
-        items: (_, { completed, after, first, orderBy } = {}) => {
+        items: (_, { completed, after, first, orderBy }, context) => {
+            console.log(context)
             // apply the filter
             const filtered = items.filter((item) => {
                 return typeof completed === 'boolean'

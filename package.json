@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "web": "vite dev",
-        "api": "node api.mjs",
+        "api": "bun run api.mjs",
         "dev": "concurrently \"npm run api\" \"npm run web\" -n \"api,web\" -c \"green,#ffc800\"",
         "build": "vite build",
         "start": "vite preview",
