@@ -1,24 +1,16 @@
-import { loadSchema } from '@graphql-tools/load'
-import { createYoga } from 'graphql-yoga'
-import { resolvers } from './schema/index.mjs'
+import { createYoga, createSchema } from 'graphql-yoga'
 import { makeHandler } from 'graphql-ws/lib/use/bun'
-import { addResolversToSchema } from '@graphql-tools/schema'
-import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import chalk from 'chalk'
+import { resolvers, typeDefs } from './schema/index.mjs'
 
 async function main() {
-    // Load schema from the file
-    const schema = await loadSchema('./schema/schema.graphql', {
-        // load from a single schema file
-        loaders: [new GraphQLFileLoader()]
+    const schema = createSchema({
+        typeDefs,
+        resolvers
     })
-
-    // Add resolvers to the schema
-    const schemaWithResolvers = addResolversToSchema({ schema, resolvers })
-    const signingKey = process.env.JWT_SECRET
     const yogaApp = createYoga({
         logging: 'error',
-        schema: schemaWithResolvers,
+        schema,
         graphiql: {
             // Use WebSockets in GraphiQL
             subscriptionsProtocol: 'WS'
@@ -30,16 +22,17 @@ async function main() {
         execute: (args) => args.rootValue.execute(args),
         subscribe: (args) => args.rootValue.subscribe(args),
         onSubscribe: async (ctx, msg) => {
-            const { schema, execute, subscribe, contextFactory, parse, validate } =
-                yogaApp.getEnveloped({
-                    ...ctx,
-                    req: ctx.extra.request,
-                    socket: ctx.extra.socket,
-                    params: msg.payload
-                })
+            const {
+                schema: ctxSchema,
+                execute,
+                subscribe,
+                contextFactory,
+                parse,
+                validate
+            } = yogaApp.getEnveloped(ctx)
 
             const args = {
-                schema,
+                schema: ctxSchema,
                 operationName: msg.payload.operationName,
                 document: parse(msg.payload.query),
                 variableValues: msg.payload.variables,
